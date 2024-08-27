@@ -6,11 +6,55 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "./utils";
+import { Pet } from "../models";
+import {
+  getOverrideProps,
+  useDataStoreCreateAction,
+  useStateMutationAction,
+} from "./utils";
+import { schema } from "../models/schema";
 import { Button, Flex, Image, Text, TextField } from "@aws-amplify/ui-react";
 import MyIcon from "./MyIcon";
 export default function AddPet(props) {
-  const { overrides, ...rest } = props;
+  const { pet, overrides, ...rest } = props;
+  const [
+    textFieldTwoNineSevenSixSixNineTwoTwoValue,
+    setTextFieldTwoNineSevenSixSixNineTwoTwoValue,
+  ] = useStateMutationAction("");
+  const [
+    textFieldTwoNineSevenSixSixNineTwoThreeValue,
+    setTextFieldTwoNineSevenSixSixNineTwoThreeValue,
+  ] = useStateMutationAction("");
+  const [
+    textFieldTwoNineSevenSixSixNineTwoFourValue,
+    setTextFieldTwoNineSevenSixSixNineTwoFourValue,
+  ] = useStateMutationAction("");
+  const [
+    textFieldThreeEightSixEightFourOneSevenValue,
+    setTextFieldThreeEightSixEightFourOneSevenValue,
+  ] = useStateMutationAction("");
+  const [
+    textFieldThreeEightSixEightFourThreeOneValue,
+    setTextFieldThreeEightSixEightFourThreeOneValue,
+  ] = useStateMutationAction("");
+  const [
+    textFieldThreeEightSixEightFourTwoFourValue,
+    setTextFieldThreeEightSixEightFourTwoFourValue,
+  ] = useStateMutationAction("");
+  const buttonThreeEightSevenZeroFourThreeSixOnClick = useDataStoreCreateAction(
+    {
+      fields: {
+        name: textFieldTwoNineSevenSixSixNineTwoTwoValue,
+        age: textFieldTwoNineSevenSixSixNineTwoThreeValue,
+        breed: textFieldTwoNineSevenSixSixNineTwoFourValue,
+        about: textFieldThreeEightSixEightFourOneSevenValue,
+        image: textFieldThreeEightSixEightFourThreeOneValue,
+        color: textFieldThreeEightSixEightFourTwoFourValue,
+      },
+      model: Pet,
+      schema: schema,
+    }
+  );
   return (
     <Flex
       gap="16px"
@@ -113,6 +157,7 @@ export default function AddPet(props) {
             borderRadius="160px"
             padding="0px 0px 0px 0px"
             objectFit="cover"
+            src={pet?.image}
             {...getOverrideProps(overrides, "image")}
           ></Image>
         </Flex>
@@ -140,6 +185,10 @@ export default function AddPet(props) {
             isDisabled={false}
             labelHidden={false}
             variation="default"
+            value={textFieldTwoNineSevenSixSixNineTwoTwoValue}
+            onChange={(event) => {
+              setTextFieldTwoNineSevenSixSixNineTwoTwoValue(event.target.value);
+            }}
             {...getOverrideProps(overrides, "TextField29766922")}
           ></TextField>
           <TextField
@@ -153,6 +202,12 @@ export default function AddPet(props) {
             isDisabled={false}
             labelHidden={false}
             variation="default"
+            value={textFieldTwoNineSevenSixSixNineTwoThreeValue}
+            onChange={(event) => {
+              setTextFieldTwoNineSevenSixSixNineTwoThreeValue(
+                event.target.value
+              );
+            }}
             {...getOverrideProps(overrides, "TextField29766923")}
           ></TextField>
           <TextField
@@ -166,6 +221,12 @@ export default function AddPet(props) {
             isDisabled={false}
             labelHidden={false}
             variation="default"
+            value={textFieldTwoNineSevenSixSixNineTwoFourValue}
+            onChange={(event) => {
+              setTextFieldTwoNineSevenSixSixNineTwoFourValue(
+                event.target.value
+              );
+            }}
             {...getOverrideProps(overrides, "TextField29766924")}
           ></TextField>
           <TextField
@@ -179,6 +240,12 @@ export default function AddPet(props) {
             isDisabled={false}
             labelHidden={false}
             variation="default"
+            value={textFieldThreeEightSixEightFourOneSevenValue}
+            onChange={(event) => {
+              setTextFieldThreeEightSixEightFourOneSevenValue(
+                event.target.value
+              );
+            }}
             {...getOverrideProps(overrides, "TextField3868417")}
           ></TextField>
           <TextField
@@ -192,6 +259,12 @@ export default function AddPet(props) {
             isDisabled={false}
             labelHidden={false}
             variation="default"
+            value={textFieldThreeEightSixEightFourTwoFourValue}
+            onChange={(event) => {
+              setTextFieldThreeEightSixEightFourTwoFourValue(
+                event.target.value
+              );
+            }}
             {...getOverrideProps(overrides, "TextField3868424")}
           ></TextField>
           <TextField
@@ -205,6 +278,12 @@ export default function AddPet(props) {
             isDisabled={false}
             labelHidden={false}
             variation="default"
+            value={textFieldThreeEightSixEightFourThreeOneValue}
+            onChange={(event) => {
+              setTextFieldThreeEightSixEightFourThreeOneValue(
+                event.target.value
+              );
+            }}
             {...getOverrideProps(overrides, "TextField3868431")}
           ></TextField>
         </Flex>
@@ -228,6 +307,9 @@ export default function AddPet(props) {
             isDisabled={false}
             variation="primary"
             children="Save"
+            onClick={() => {
+              buttonThreeEightSevenZeroFourThreeSixOnClick();
+            }}
             {...getOverrideProps(overrides, "Button3870436")}
           ></Button>
           <Button
