@@ -4,11 +4,14 @@ import "./App.css";
 import { NavBar, Footer } from "./ui-components";
 // import { PetProfile } from "./ui-components";
 import { Pets } from "./ui-components";
-import { AddPet } from './ui-components';
-
+import { AddPet } from "./ui-components";
+import { PetDetails } from "./ui-components";
 
 function App() {
   const [showForm, setShowForm] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
+  const [pet, setPet] = useState();
+
   // const petProfileOverride = {
   //   Breed: {
   //     color: "blue",
@@ -50,6 +53,27 @@ function App() {
         />
       <header className="App-header">
         {
+          showDetails && ( 
+            <PetDetails 
+              pet={pet}
+              style={{
+                textAlign: "left",
+                margin: "1rem",
+              }}
+              overrides={{
+                "Close": {
+                  onClick: () => {
+                    setShowDetails(false);
+                  },
+                  style: {
+                    cursor: "pointer",
+                  },
+                }
+              }}
+              /> 
+          )
+        }
+        {
           showForm && (
             <AddPet
               overrides={formOverrides}
@@ -66,7 +90,13 @@ function App() {
           overrideItems={({ item, index }) => ({
             overrides: {
               Breed: { color: "blue" },
-              Button29766907: { onClick: () => alert(`${item.name}`) },
+              Button29766907: { 
+                onClick: () => {
+                  // alert(`${item.name}`);
+                  setShowDetails(!showDetails);
+                  setPet(item);
+                } 
+              },
             },
           })}
           />
