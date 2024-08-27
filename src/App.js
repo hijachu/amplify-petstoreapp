@@ -4,18 +4,17 @@ import "./App.css";
 import { NavBar, Footer } from "./ui-components";
 // import { PetProfile } from "./ui-components";
 import { Pets } from "./ui-components";
-
 import { AddPet } from './ui-components';
 
 
-
 function App() {
-  const [showForm, setShowForm] = useState(false)
+  const [showForm, setShowForm] = useState(false);
   // const petProfileOverride = {
   //   Breed: {
   //     color: "blue",
   //   },
   // };
+
   const formOverrides = {
     MyIcon: {
       style: {
@@ -26,7 +25,7 @@ function App() {
         setShowForm(false);
       }
     }
-  }
+  };
 
   const navbarOverrides = {
     image: {
